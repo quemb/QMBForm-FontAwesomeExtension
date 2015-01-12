@@ -2,7 +2,6 @@ package com.quemb.qmbform.fontawesomeextension.view;
 
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.descriptor.RowDescriptor;
-import com.quemb.qmbform.view.FormDetailTextFieldCell;
 
 import android.content.Context;
 
