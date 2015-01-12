@@ -4,7 +4,7 @@ import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 import com.quemb.qmbform.fontawesomeextension.R;
 import com.quemb.qmbform.fontawesomeextension.descriptor.Image;
-import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 import com.quemb.qmbform.view.FormTitleFieldCell;
 
@@ -46,9 +46,7 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
         if ( value != null && value.getValue() != null ) {
 
 
-
             IconDrawable drawable = new IconDrawable(getContext(), Iconify.IconValue.fa_adjust)
-                    .colorRes(R.color.abc_primary_text_disable_only_material_dark)
                     .actionBarSize();
             getImageView().setImageDrawable(drawable);
         }

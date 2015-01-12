@@ -34,6 +34,7 @@ import com.quemb.qmbform.view.SectionCell;
 import android.content.Context;
 import android.os.Build;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
@@ -99,9 +100,12 @@ public class CellViewFactory {
             try {
                 FormBaseCell formBaseCell;
 
-                formBaseCell = mViewRowTypeMap.get(row.getRowType()).getConstructor(Context.class, RowDescriptor.class).newInstance(
-                        context, row);
+                Class<? extends FormBaseCell> viewClass = mViewRowTypeMap.get(row.getRowType());
+                Constructor<? extends FormBaseCell> constructor = viewClass.getConstructor(Context.class, RowDescriptor.class);
+
+                formBaseCell = constructor.newInstance(context, row);
                 rowView = formBaseCell;
+
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
