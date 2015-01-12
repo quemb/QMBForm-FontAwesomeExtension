@@ -1,20 +1,65 @@
 package quemb.com.qmbform.fontawesomeextension.sample;
 
+import com.quemb.qmbform.FormManager;
+import com.quemb.qmbform.OnFormRowClickListener;
+import com.quemb.qmbform.descriptor.FormDescriptor;
+import com.quemb.qmbform.descriptor.FormItemDescriptor;
+import com.quemb.qmbform.descriptor.OnFormRowValueChangedListener;
+import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.SectionDescriptor;
+import com.quemb.qmbform.descriptor.Value;
+
+//import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
+
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.HashMap;
 
 import quemb.com.qmbform.fontawesomeextension.sample.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnFormRowValueChangedListener,
+        OnFormRowClickListener {
+
+    private ListView mListView;
+
+    private MenuItem mSaveMenuItem;
+    public static String TAG = "SampleFormFragment";
+
+    private FormManager mFormManager;
+
+    private HashMap<String, Value<?>> mChangesMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        mListView = (ListView) findViewById(R.id.list);
+        mChangesMap = new HashMap<String, Value<?>>();
+
+        FormDescriptor descriptor = FormDescriptor.newInstance();
+        descriptor.setOnFormRowValueChangedListener(this);
+
+        SectionDescriptor sectionDescriptor = SectionDescriptor.newInstance("section","FontAwesome Image Cells");
+        descriptor.addSection(sectionDescriptor);
+
+        sectionDescriptor.addRow( RowDescriptor
+                .newInstance("detail", RowDescriptor.FormRowDescriptorTypeName, "Title",
+                        new Value<String>("Detail")) );
+
+        mFormManager = new FormManager();
+        mFormManager.setup(descriptor, mListView, this);
+        mFormManager.setOnFormRowClickListener(this);
     }
+    public void onCreateView(){}
 
 
     @Override
@@ -37,5 +82,23 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFormRowClick(FormItemDescriptor itemDescriptor) {
+
+    }
+
+    @Override
+    public void onValueChanged(RowDescriptor rowDescriptor, Value<?> oldValue, Value<?> newValue) {
+        Log.d(TAG, "Value Changed: " + rowDescriptor.getTitle());
+//
+        mChangesMap.put(rowDescriptor.getTag(), newValue);
+        updateSaveItem();
+    }
+    private void updateSaveItem() {
+        if (mSaveMenuItem != null){
+            mSaveMenuItem.setVisible(mChangesMap.size()>0);
+        }
     }
 }
