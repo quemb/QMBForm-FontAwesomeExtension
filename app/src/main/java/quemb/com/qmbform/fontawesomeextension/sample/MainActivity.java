@@ -1,5 +1,6 @@
 package quemb.com.qmbform.fontawesomeextension.sample;
 
+import com.joanzapata.android.iconify.Iconify;
 import com.quemb.qmbform.CellViewFactory;
 import com.quemb.qmbform.FormManager;
 import com.quemb.qmbform.OnFormRowClickListener;
@@ -9,6 +10,7 @@ import com.quemb.qmbform.descriptor.OnFormRowValueChangedListener;
 import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
 import com.quemb.qmbform.descriptor.Value;
+import com.quemb.qmbform.fontawesomeextension.descriptor.Image;
 import com.quemb.qmbform.fontawesomeextension.view.FormFontAwesomeFieldCell;
 
 
@@ -30,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
     private ListView mListView;
 
     private MenuItem mSaveMenuItem;
-    public static String TAG = "SampleFormFragment";
+    public static String TAG = "SampleFormActivity";
 
     private FormManager mFormManager;
 
@@ -53,13 +55,13 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
         SectionDescriptor sectionDescriptor = SectionDescriptor.newInstance("section","FontAwesome Image Cells");
         descriptor.addSection(sectionDescriptor);
 
-        sectionDescriptor.addRow( RowDescriptor
+        sectionDescriptor.addRow(RowDescriptor
                 .newInstance("detail", RowDescriptor.FormRowDescriptorTypeName, "Title",
-                        new Value<String>("Detail")) );
+                        new Value<String>("Detail")));
 
         sectionDescriptor.addRow( RowDescriptor
-                .newInstance("detail", RowDescriptor.FormRowDescriptorTypeFontAwesome, "Title",
-                        new Value<String>("Detail")) );
+                .newInstance("fontAwesome", RowDescriptor.FormRowDescriptorTypeFontAwesome, "Title",
+                        new Value<Image>(new Image(Iconify.IconValue.fa_share))) );
 
         mFormManager = new FormManager();
         mFormManager.setup(descriptor, mListView, this);
