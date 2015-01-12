@@ -1,15 +1,15 @@
 package quemb.com.qmbform.fontawesomeextension.sample;
 
+import com.quemb.qmbform.CellViewFactory;
 import com.quemb.qmbform.FormManager;
 import com.quemb.qmbform.OnFormRowClickListener;
 import com.quemb.qmbform.descriptor.FormDescriptor;
 import com.quemb.qmbform.descriptor.FormItemDescriptor;
 import com.quemb.qmbform.descriptor.OnFormRowValueChangedListener;
-import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
 import com.quemb.qmbform.descriptor.Value;
-
-//import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
+import com.quemb.qmbform.fontawesomeextension.view.FormFontAwesomeFieldCell;
 
 
 import android.support.v7.app.ActionBarActivity;
@@ -45,6 +45,8 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
         mListView = (ListView) findViewById(R.id.list);
         mChangesMap = new HashMap<String, Value<?>>();
 
+        CellViewFactory.getInstance().setRowTypeMap(RowDescriptor.FormRowDescriptorTypeFontAwesome, FormFontAwesomeFieldCell.class);
+
         FormDescriptor descriptor = FormDescriptor.newInstance();
         descriptor.setOnFormRowValueChangedListener(this);
 
@@ -53,6 +55,10 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
 
         sectionDescriptor.addRow( RowDescriptor
                 .newInstance("detail", RowDescriptor.FormRowDescriptorTypeName, "Title",
+                        new Value<String>("Detail")) );
+
+        sectionDescriptor.addRow( RowDescriptor
+                .newInstance("detail", RowDescriptor.FormRowDescriptorTypeFontAwesome, "Title",
                         new Value<String>("Detail")) );
 
         mFormManager = new FormManager();
@@ -90,7 +96,7 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
     }
 
     @Override
-    public void onValueChanged(RowDescriptor rowDescriptor, Value<?> oldValue, Value<?> newValue) {
+    public void onValueChanged(com.quemb.qmbform.descriptor.RowDescriptor rowDescriptor, Value<?> oldValue, Value<?> newValue) {
         Log.d(TAG, "Value Changed: " + rowDescriptor.getTitle());
 //
         mChangesMap.put(rowDescriptor.getTag(), newValue);
@@ -101,4 +107,6 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
             mSaveMenuItem.setVisible(mChangesMap.size()>0);
         }
     }
+
+
 }
