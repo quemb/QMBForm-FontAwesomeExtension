@@ -1,5 +1,6 @@
 package quemb.com.qmbform.fontawesomeextension.sample;
 
+import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 import com.quemb.qmbform.CellViewFactory;
 import com.quemb.qmbform.FormManager;
@@ -12,6 +13,7 @@ import com.quemb.qmbform.descriptor.SectionDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 import com.quemb.qmbform.fontawesomeextension.descriptor.Image;
 import com.quemb.qmbform.fontawesomeextension.view.FormFontAwesomeFieldCell;
+import com.quemb.qmbform.fontawesomeextension.view.FormFontAwesomeVerticalFieldCell;
 
 
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +21,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.HashMap;
@@ -48,6 +51,9 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
         mChangesMap = new HashMap<String, Value<?>>();
 
         CellViewFactory.getInstance().setRowTypeMap(RowDescriptor.FormRowDescriptorTypeFontAwesome, FormFontAwesomeFieldCell.class);
+        CellViewFactory.getInstance().setRowTypeMap(RowDescriptor.FormRowDescriptorTypeFontAwesomeVertical, FormFontAwesomeVerticalFieldCell.class);
+
+
 
         FormDescriptor descriptor = FormDescriptor.newInstance();
         descriptor.setOnFormRowValueChangedListener(this);
