@@ -2,8 +2,9 @@ package com.quemb.qmbform.fontawesomeextension.view;
 
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.quemb.qmbform.R;
-import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.fontawesomeextension.R;
+import com.quemb.qmbform.fontawesomeextension.descriptor.Image;
+import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 import com.quemb.qmbform.view.FormTitleFieldCell;
 
@@ -31,11 +32,13 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
         super.init();
         mDetailTextView = (TextView)findViewById(R.id.detailTextView);
 
+        mImageView = (ImageView)findViewById(R.id.imageView);
+
     }
 
     @Override
     protected int getResource() {
-        return R.layout.detail_text_field_cell;
+        return R.layout.fontawesome_field_cell;
     }
 
     @Override
@@ -47,11 +50,11 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
             getDetailTextView().setHint(getRowDescriptor().getHint(getContext()));
         }
 
-        Value<?> value = getRowDescriptor().getValue();
+        Value<Image> value = getRowDescriptor().getValue();
         if ( value != null && value.getValue() != null ) {
 
-            IconDrawable drawable = new IconDrawable(getContext(), Iconify.IconValue.fa_share)
-                    .colorRes(R.color.abc_search_url_text_normal);
+            IconDrawable drawable = new IconDrawable(getContext(), value.getValue().getIcon())
+                    .colorRes(value.getValue().getColor());
             getImageView().setImageDrawable(drawable);
 
 //            if ( value.getValue() instanceof String ) {

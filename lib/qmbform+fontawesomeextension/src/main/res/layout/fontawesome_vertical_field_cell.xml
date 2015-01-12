@@ -8,13 +8,14 @@
 			  android:layout_height="wrap_content">
 
 
+
 	<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textColor="@color/section_cell_text"
-			android:id="@+id/textView"/>
+			android:id="@+id/imageView"/>
 
 	<TextView
 			android:layout_width="wrap_content"

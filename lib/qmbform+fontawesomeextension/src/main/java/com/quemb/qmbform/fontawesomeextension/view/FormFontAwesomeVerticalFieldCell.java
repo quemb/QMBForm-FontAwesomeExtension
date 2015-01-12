@@ -1,7 +1,7 @@
 package com.quemb.qmbform.fontawesomeextension.view;
 
-import com.quemb.qmbform.R;
-import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.fontawesomeextension.R;
+import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
 
 import android.content.Context;
 
@@ -17,6 +17,6 @@ public class FormFontAwesomeVerticalFieldCell extends FormFontAwesomeFieldCell {
 
     @Override
     protected int getResource() {
-        return R.layout.detail_text_vertical_field_cell;
+        return R.layout.fontawesome_vertical_field_cell;
     }
 }
