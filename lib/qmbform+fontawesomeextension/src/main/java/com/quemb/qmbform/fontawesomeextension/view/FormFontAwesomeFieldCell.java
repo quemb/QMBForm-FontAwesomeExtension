@@ -10,14 +10,11 @@ import com.quemb.qmbform.view.FormTitleFieldCell;
 
 import android.content.Context;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by tonimoeckel on 15.07.14.
  */
 public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
-
-    private TextView mDetailTextView;
 
     private ImageView mImageView;
 
@@ -30,7 +27,6 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
     protected void init() {
 
         super.init();
-        mDetailTextView = (TextView)findViewById(R.id.detailTextView);
 
         mImageView = (ImageView)findViewById(R.id.imageView);
 
@@ -46,29 +42,17 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
 
         super.update();
 
-        if (getRowDescriptor().getHint(getContext())!= null){
-            getDetailTextView().setHint(getRowDescriptor().getHint(getContext()));
-        }
-
         Value<Image> value = getRowDescriptor().getValue();
         if ( value != null && value.getValue() != null ) {
 
-            IconDrawable drawable = new IconDrawable(getContext(), value.getValue().getIcon())
-                    .colorRes(value.getValue().getColor());
-            getImageView().setImageDrawable(drawable);
 
-//            if ( value.getValue() instanceof String ) {
-//                getDetailTextView().setText((String) value.getValue());
-//            } else {
-//                getDetailTextView().setText(String.valueOf(value.getValue()));
-//
-//            }
+
+            IconDrawable drawable = new IconDrawable(getContext(), Iconify.IconValue.fa_adjust)
+                    .colorRes(R.color.abc_primary_text_disable_only_material_dark)
+                    .actionBarSize();
+            getImageView().setImageDrawable(drawable);
         }
 
-    }
-
-    public TextView getDetailTextView() {
-        return mDetailTextView;
     }
 
     public ImageView getImageView() {
