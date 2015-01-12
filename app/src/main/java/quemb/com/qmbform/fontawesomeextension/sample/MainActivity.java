@@ -34,12 +34,10 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
 
     private ListView mListView;
 
-    private MenuItem mSaveMenuItem;
-    public static String TAG = "SampleFormActivity";
+    public static String TAG = "MainActivity";
 
     private FormManager mFormManager;
 
-    private HashMap<String, Value<?>> mChangesMap;
 
 
     @Override
@@ -48,7 +46,6 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
 
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list);
-        mChangesMap = new HashMap<String, Value<?>>();
 
         CellViewFactory.getInstance().setRowTypeMap(RowDescriptor.FormRowDescriptorTypeFontAwesome, FormFontAwesomeFieldCell.class);
         CellViewFactory.getInstance().setRowTypeMap(RowDescriptor.FormRowDescriptorTypeFontAwesomeVertical, FormFontAwesomeVerticalFieldCell.class);
@@ -61,10 +58,6 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
         SectionDescriptor sectionDescriptor = SectionDescriptor.newInstance("section","FontAwesome Image Cells");
         descriptor.addSection(sectionDescriptor);
 
-        sectionDescriptor.addRow(RowDescriptor
-                .newInstance("detail", RowDescriptor.FormRowDescriptorTypeName, "Title",
-                        new Value<String>("Detail")));
-
         sectionDescriptor.addRow( RowDescriptor
                 .newInstance("fontAwesome", RowDescriptor.FormRowDescriptorTypeFontAwesome, "Title",
                         new Value<Image>(new Image(Iconify.IconValue.fa_share))) );
@@ -76,27 +69,6 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
     public void onCreateView(){}
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onFormRowClick(FormItemDescriptor itemDescriptor) {
@@ -107,14 +79,9 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
     public void onValueChanged(com.quemb.qmbform.descriptor.RowDescriptor rowDescriptor, Value<?> oldValue, Value<?> newValue) {
         Log.d(TAG, "Value Changed: " + rowDescriptor.getTitle());
 //
-        mChangesMap.put(rowDescriptor.getTag(), newValue);
-        updateSaveItem();
+
     }
-    private void updateSaveItem() {
-        if (mSaveMenuItem != null){
-            mSaveMenuItem.setVisible(mChangesMap.size()>0);
-        }
-    }
+
 
 
 }
