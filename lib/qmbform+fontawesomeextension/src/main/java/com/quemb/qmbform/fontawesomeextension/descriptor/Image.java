@@ -14,7 +14,7 @@ public class Image {
 
 
     private Iconify.IconValue mIcon;
-    private int mColor = 0;
+    private int mColor = 17170446 ;
 
     private OnValueChangeListener mOnValueChangeListener;
 

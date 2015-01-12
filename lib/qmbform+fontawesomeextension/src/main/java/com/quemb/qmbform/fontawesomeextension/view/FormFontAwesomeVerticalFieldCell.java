@@ -1,7 +1,7 @@
 package com.quemb.qmbform.fontawesomeextension.view;
 
 import com.quemb.qmbform.fontawesomeextension.R;
-import com.quemb.qmbform.fontawesomeextension.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.RowDescriptor;
 
 import android.content.Context;
 

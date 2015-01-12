@@ -9,6 +9,9 @@ import com.quemb.qmbform.descriptor.Value;
 import com.quemb.qmbform.view.FormTitleFieldCell;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 /**
@@ -42,13 +45,17 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
 
         super.update();
 
+
+
         Value<Image> value = getRowDescriptor().getValue();
-        if ( value != null && value.getValue() != null ) {
 
+        if ( value != null && value.getValue().getIcon() != null ) {
 
-            IconDrawable drawable = new IconDrawable(getContext(), Iconify.IconValue.fa_adjust)
+            IconDrawable drawable = new IconDrawable(getContext(), value.getValue().getIcon())
+                    .color(getContext().getResources().getColor(value.getValue().getColor()))
                     .actionBarSize();
             getImageView().setImageDrawable(drawable);
+
         }
 
     }
