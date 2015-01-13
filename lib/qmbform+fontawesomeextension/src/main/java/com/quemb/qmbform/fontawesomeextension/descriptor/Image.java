@@ -12,22 +12,31 @@ import android.graphics.Color;
  */
 public class Image {
 
+    public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = 48;
 
     private Iconify.IconValue mIcon;
-    private int mColor = 17170446 ;
+    private int mColor = R.color.default_fa_color ;
+    private int mSize = ANDROID_ACTIONBAR_ICON_SIZE_DP;
 
     private OnValueChangeListener mOnValueChangeListener;
 
 
     public Image() { }
 
-    public Image(Iconify.IconValue icon, int color){
-        mIcon = icon;
-        mColor = color;
-    }
     public Image(Iconify.IconValue icon){
         mIcon = icon;
     }
+    public Image(Iconify.IconValue icon, int size){
+        mIcon = icon;
+        mSize = size;
+    }
+
+    public Image(Iconify.IconValue icon, int size, int color){
+        mIcon = icon;
+        mSize = size;
+        mColor = color;
+    }
+
 
     public Iconify.IconValue getIcon(){
         return mIcon;
@@ -49,5 +58,13 @@ public class Image {
 
     public void setOnValueChangeListener(OnValueChangeListener listener) {
         this.mOnValueChangeListener = listener;
+    }
+
+    public int getSize(){
+        return mSize;
+    }
+
+    public void setSize(int size){
+        mSize = size;
     }
 }

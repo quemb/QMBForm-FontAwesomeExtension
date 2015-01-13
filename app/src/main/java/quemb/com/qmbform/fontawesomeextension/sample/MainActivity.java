@@ -59,12 +59,20 @@ public class MainActivity extends ActionBarActivity implements OnFormRowValueCha
         descriptor.addSection(sectionDescriptor);
 
         sectionDescriptor.addRow( RowDescriptor
+                .newInstance("fontAwesome", RowDescriptor.FormRowDescriptorTypeFontAwesome, "FontAwesome Icon Title; Default Color",
+                        new Value<Image>(new Image(Iconify.IconValue.fa_android, 100))) );
+
+        sectionDescriptor.addRow( RowDescriptor
                 .newInstance("fontAwesome", RowDescriptor.FormRowDescriptorTypeFontAwesome, "FontAwesome Icon Title",
-                        new Value<Image>(new Image(Iconify.IconValue.fa_arrow_circle_left, R.color.fa_color))) );
+                        new Value<Image>(new Image(Iconify.IconValue.fa_arrow_circle_left, 100, R.color.fa_color))) );
+
+        sectionDescriptor.addRow( RowDescriptor
+                .newInstance("fontAwesomeVertical", RowDescriptor.FormRowDescriptorTypeFontAwesomeVertical, "FontAwesomeVertical Icon Title; Default Size",
+                        new Value<Image>(new Image(Iconify.IconValue.fa_adn))) );
 
         sectionDescriptor.addRow( RowDescriptor
                 .newInstance("fontAwesomeVertical", RowDescriptor.FormRowDescriptorTypeFontAwesomeVertical, "FontAwesomeVertical Icon Title",
-                        new Value<Image>(new Image(Iconify.IconValue.fa_share))) );
+                        new Value<Image>(new Image(Iconify.IconValue.fa_share, 100, R.color.fa_color))) );
 
         mFormManager = new FormManager();
         mFormManager.setup(descriptor, mListView, this);

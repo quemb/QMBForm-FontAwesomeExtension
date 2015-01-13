@@ -53,7 +53,7 @@ public class FormFontAwesomeFieldCell extends FormTitleFieldCell {
 
             IconDrawable drawable = new IconDrawable(getContext(), value.getValue().getIcon())
                     .color(getContext().getResources().getColor(value.getValue().getColor()))
-                    .actionBarSize();
+                    .sizeDp(value.getValue().getSize());
             getImageView().setImageDrawable(drawable);
 
         }
