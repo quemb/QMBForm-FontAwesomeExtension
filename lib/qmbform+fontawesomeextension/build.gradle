@@ -24,4 +24,5 @@ dependencies {
     compile project(":lib:QMBForm")
 
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.joanzapata.android:android-iconify:1.0.8'
 }
